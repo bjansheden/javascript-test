@@ -1,10 +1,13 @@
+
 interface Video {
   id: number;
   title: string;
   grade: number;
 }
 
-// GET http://localhost:3000/videos
+console.log("Checking if it works")
+
+//GET http://localhost:3000/videos
 const getVideos = (): Promise<Video[]> => {
 }
 
