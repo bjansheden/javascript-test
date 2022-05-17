@@ -5,10 +5,10 @@ interface Video {
   grade: number;
 }
 
-
 const container = document.querySelector('.videos') as HTMLDivElement;
 const searchForm = document.querySelector('.search') as HTMLFormElement;
-const updateGrade = document.querySelector('.videos') as HTMLButtonElement;
+const updateGrade = document.querySelector('.videos') as HTMLFormElement;
+console.log(updateGrade)
 
 const renderVideos = async (term: String) => {
   if (term) {
@@ -22,21 +22,11 @@ const renderVideos = async (term: String) => {
   let template = ''
   videos.forEach(video => {
     template += `
-      <div class="video">
+      <div class="video"=>
         <h2>${video.title}</h2>
         <p>Grade: ${video.grade}
-          <form>  
-            <label for="grade"> Edit grade </label>
-            <select name="grade" id="membership">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-            </select>
-            <input type="submit" value="Submit"/>
-          </form>
         </p>
+        <a href="update.html?id=${video.id}">Update grade</a>
       </div>
       `
     
@@ -45,13 +35,26 @@ const renderVideos = async (term: String) => {
   console.log(template);
   }}
 
-updateGrade.addEventListener('click', async (e) => {
-  e.preventDefault();
-  const result = await fetch('http://localhost:3000/videos/',{
-  method: 'PUT'
+const updateVideoGrade = async (id: String, updates:Number) => {
+  const response = await fetch(`http://localhost:3000/videos/${id}`, {
+    method: 'PUT',
+    headers: {
+      contentType: 'application/json'
+    },
+    body: JSON.stringify(updates)
   })
-  console.log(result)
-})
+
+  const updatedVideo = await response.json()
+  console.log(updatedVideo)
+
+}
+
+/*container.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  updateVideoGrade(updateGrade.id, updateGrade.select)
+  //updateVideoGrade
+  console.log(updateGrade.id)
+})*/
 
 searchForm.addEventListener('submit', (e) => {
   e.preventDefault();
