@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "concurrently \"parcel ./*.html\" \"json-server --watch db.json\"",
     "server": "json-server --watch db.json"
@@ -18,5 +19,8 @@
     "parcel": "^2.5.0",
     "parcel-bundler": "1.12.3",
     "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "axios": "^0.27.2"
   }
 }

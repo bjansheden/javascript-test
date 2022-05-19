@@ -1,9 +1,16 @@
+import axios from "axios";
+import { Video } from ".";
+
+type UpdateGrade ={
+  id: String;
+  grade: Number;
+  title: String;
+}
 
 const id = new URLSearchParams(window.location.search).get('id') as String;
-console.log(id)
+console.log("Video ID",id)
 const containerUpdate = document.querySelector('.details') as HTMLDivElement;
 const updateVideo1 = document.querySelector('.update') as HTMLSelectElement;
-console.log(updateVideo1)
 
 const renderVideoEditView = async () => {
     const result = await fetch('http://localhost:3000/videos/' + id);
@@ -12,30 +19,27 @@ const renderVideoEditView = async () => {
     const templateEditView = `
         <h1>${video.title}</h1>
         <p>${video.grade}</p>
+        
     `
 
     containerUpdate.innerHTML = templateEditView;
 }
 
-const updateVideoGrade = async (id: String, updates:String) => {
-    const result = await fetch(`http://localhost:3000/videos/${id}`, {
-      method: 'PATCH',
-      headers: {
-        contentType: 'application/json'
-      },
-      body: JSON.stringify({
-          id: `${id}`,
-      
-          grade: `${updates}`
-      })
-      
-    })
+const updateVideoGrade = async (id: String, updates:Number) => {
+  const { data } = await axios.patch<UpdateGrade>(`http://localhost:3000/videos/${id}`,
+  { grade: `${Number(updates)}`},
+  {headers: {
+    contentType: 'application/json-patch + json'
+    }
+  });
+  console.log('Updated value:', updates)
+  renderVideoEditView()
 }
+
 updateVideo1.addEventListener('change', async (e) => {
-    
-    updateVideoGrade(id, updateVideo1.value)
-  //updateVideoGrade
-  console.log(updateVideo1.value)
+  var update = Number(updateVideo1.value)  
+  updateVideoGrade(id, update)
+  console.log("User changed grade:",update)
     })
 
 window.addEventListener('DOMContentLoaded', () => renderVideoEditView());

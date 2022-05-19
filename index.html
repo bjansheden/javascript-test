@@ -2,17 +2,18 @@
 <html>
   <head>
     <title>Movie Database</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
   </head>
   <body>
-    <h1>Movie Database</h1>
-    
-    <form class="search">
-      <input type="text" name="term" placeholder="Search..."/>
-    </form>
-    
+    <div class="header">
+      <h1>Movie Database</h1>
+    </div>
+    <div class="wrapper">
+      <form class="search">
+        <input type="text" name="term" placeholder="Search..."/>
+      </form>
+    </div>
     <div class="videos"></div>
-    
-    <script src="./src/index.ts"></script>
-
+    <script src="./src/index.ts" type="module"></script>
   </body>
 </html>
