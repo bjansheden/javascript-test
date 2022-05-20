@@ -1,7 +1,7 @@
 export interface Video {
-  id: string;
-  title: string;
-  grade: String;
+  id: Number;
+  title: String;
+  grade: Number;
 }
 
 const container = document.querySelector('.videos') as HTMLDivElement;
