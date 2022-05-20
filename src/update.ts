@@ -18,8 +18,9 @@ const renderVideoEditView = async () => {
     const video:Video = await result.json();
 
     const templateEditView = `
-        <h1>${video.title}</h1> 
-        <p>Grade: ${video.grade}</p>
+      <a id="backButton" class="backButton" href="/index.html?title=${video.title}">Back</a>  
+      <h1>${video.title}</h1> 
+      <p>Grade: ${video.grade}</p>
         
     `
     containerUpdate.innerHTML = templateEditView;

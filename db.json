@@ -2,7 +2,7 @@
   "videos": [
     {
       "id": 1,
-      "grade": "3",
+      "grade": "2",
       "title": "Joker"
     },
     {
@@ -17,7 +17,7 @@
     },
     {
       "id": 4,
-      "grade": 5,
+      "grade": "5",
       "title": "Parasite"
     },
     {
