@@ -7,6 +7,19 @@ export interface Video {
 const container = document.querySelector('.videos') as HTMLDivElement;
 const searchForm = document.querySelector('.search') as HTMLFormElement;
 
+const throttle = (fn:Function, delay:Number) => {
+  let lastSubmit = 0;
+  return (...args) => {
+    const now = new Date().getTime();
+    if(now - lastSubmit < delay) {
+      return;
+    }
+    lastSubmit = now;
+    return fn(...args)
+  }
+}
+
+// Rendering the videos that matches the search input.
 const renderVideos = async (term: String) => {
   if (term) {
   let uri = 'http://localhost:3000/videos';
@@ -32,8 +45,9 @@ const renderVideos = async (term: String) => {
   console.log(template);
   }}
 
-searchForm.addEventListener('submit', (e) => {
+// Listener for the submission of a search term
+searchForm.addEventListener('submit', throttle((e) => {
   e.preventDefault();
   renderVideos(searchForm.term.value)
   console.log(searchForm.term.value)
-})
+}, 50));

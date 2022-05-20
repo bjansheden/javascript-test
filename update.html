@@ -1,4 +1,4 @@
-
+<!DOCTYPE html>
 <html>
     <head>
         <title>Movie Database</title>
@@ -8,16 +8,19 @@
         <div class="header">
             <img src="/src/images/Movie_database.png" />
         </div>
-        <div class ="details"></div>
-        <div class ="gradeSelector">    
-            <label for="grade"> Edit grade </label>
-            <select name="grade" class="update">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-            </select>
+        <div class="detailWrapper">
+            <a id="backButton" class="backButton" href="/index.html">Back</a>
+            <div class ="details"></div>
+            <div class ="gradeSelector">    
+                <label for="grade"> Edit grade </label>
+                <select name="grade" class="update">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
         </div>
         <script type="module" src="./src/update.ts"></script>       
     </body>
