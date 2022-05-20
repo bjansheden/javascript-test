@@ -7,8 +7,7 @@ export interface Video {
 const container = document.querySelector('.videos') as HTMLDivElement;
 const searchForm = document.querySelector('.search') as HTMLFormElement;
 // Used to requery the db when returning from edit view.
-const title = new URLSearchParams(window.location.search).get('title') as String;
-
+var prevTitle = new URLSearchParams(window.location.search).get('title') as String | null;
 // Used to throttle the requests to the db
 const throttle = (fn:Function, delay:Number) => {
   let lastSubmit = 0;
@@ -49,8 +48,8 @@ const renderVideos = async (term: String) => {
   }}
 
   // This is used to render videos upon return from update view. 
-  if (title != null) {
-    renderVideos(title)
+  if (prevTitle != null) {
+    renderVideos(prevTitle)
   }
 
 // Listener for the submission of a search term
