@@ -19,7 +19,7 @@ const renderVideos = async (term: String) => {
   let template = ''
   videos.forEach(video => {
     template += `
-      <div class="video"=>
+      <div class="video">
         <h2>${video.title}</h2>
         <p>Grade: ${video.grade}
         </p>
